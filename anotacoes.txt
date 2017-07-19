@@ -1,4 +1,8 @@
 npm run dev
+npm run production
+pm2 status backend
+npm install pm2 -g
+node_modules\.bin\pm2 status backend
 
 /* Teste DB*/
 name: Janeiro/17
@@ -15,4 +19,8 @@ debts[1][name]: Condomínio
 debts[1][value]: 720
 debts[1][status]: AGENDADO
 
-teste
+/*Comandos GIT*/
+
+git commit -m "Commit message"
+git push origin master
+git init

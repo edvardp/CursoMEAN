@@ -45,4 +45,4 @@
             .pipe(gulp.dest('public/assets/fonts'));
     });
 
-})()
+})();
