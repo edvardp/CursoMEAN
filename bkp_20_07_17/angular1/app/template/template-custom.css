@@ -7,3 +7,7 @@ html {
     bottom:0; 
     width: 100%;
 }
+
+.d-flex{
+    display:flex;
+}
