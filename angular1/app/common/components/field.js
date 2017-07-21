@@ -8,7 +8,11 @@
                 placehoulder: '@',
                 type:'@',
                 model: '=',
-                readonly: '<'
+                readonly: '<',
+                min: '@',
+                max: '@',
+                minlength: '@',
+                maxlength: '@'
             },
             controller: [
                 'gridSystem',
@@ -23,7 +27,11 @@
                     <input type="{{$ctrl.type}}" id="{{$ctrl.id}}" class="form-control" 
                             placeholder="{{$ctrl.placeholder}}" 
                             ng-model="$ctrl.model" 
-                            ng-readonly="$ctrl.readonly" />
+                            ng-readonly="$ctrl.readonly" 
+                            {{$ctrl.min ? 'min="$ctrl.min"'}}
+                            {{$ctrl.max ? 'max="$ctrl.max"'}}
+                            {{$ctrl.minlength ? 'minlength="$ctrl.minlength"'}}
+                            {{$ctrl.max ? 'maxlength="$ctrl.maxlength"'}} />
                 </div>
             </div>`
         })
