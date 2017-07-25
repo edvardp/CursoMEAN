@@ -5,7 +5,8 @@
         .config([
             '$stateProvider',
             '$urlRouterProvider',
-            function ($stateProvider, $urlRouterProvider) {
+            '$httpProvider',
+            function ($stateProvider, $urlRouterProvider, $httpProvider) {
                 $stateProvider
                     .state('dashboard', {
                         url: '/dashboard',
@@ -17,7 +18,7 @@
                         templateUrl: 'billingCycle/tabs.html'
                     });
 
-                $urlRouterProvider.otherwise('/dashboard');
+                    $httpProvider.interceptors.push('handleReponseError');
             }
         ])
         .run([
@@ -28,6 +29,7 @@
             'auth',
             function ($rootScope, $http, $location, $window, auth) {
                 validateUser();
+
                 $rootScope.$on('$locationChangeStart', () => validateUser());
 
                 function validateUser() {
@@ -38,12 +40,17 @@
                     if (!user && !isAuthPage) {
                         $window.location.href = authPage;
                     } else if (user && !user.isValid) {
-                        user.isValid = true;
-                        $http.defaults.headers.common.Authorization = user.token;
-                        isAuthPage ? $window.location.href = '/' : $location.path('/dashboard');
+                        auth.validateToken(user.token, (error, valid) => {
+                            if (!valid) {
+                                $window.location.href = authPage;
+                            } else {
+                                user.isValid = true;
+                                $http.defaults.headers.common.Authorization = user.token;
+                                isAuthPage ? $window.location.href = '/' : $location.path('/dashboard');
+                            }
+                        });
                     }
                 }
-
             }
         ])
 })();
