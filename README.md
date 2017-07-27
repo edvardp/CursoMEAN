@@ -16,5 +16,9 @@ Instruções:
 5. Instalar as dependências do projeto backend: [pasta]/backend> npm i
 6. Instalar as dependências do projeto angular1:[pasta]/angular1> npm i
 7. Iniciar o servidor de aplicação backend: [pasta]/backend> npm run production
-7. Iniciar o servidor de aplicação angular1: [pasta]/angular1> npm run dev
-8. Aproveite
+8. Iniciar o servidor de aplicação angular1: [pasta]/angular1> npm run dev
+9. Crie o arquivo .env no ambiente [pasta]/backend com a seguinte sintaxe:
+  * module.exports = {
+      authSecret: 'XXX' (Digite entre as aspas simples o segredo que quiser)
+  }
+9. Aproveite
